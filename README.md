@@ -76,3 +76,57 @@ kubectl scale --replicas=<count> rc <name>                          # Scale repl
 kubectl expose rc <name> --port=<external> --target-port=<internal> # Map port <external> to 
                                                                     # port <internal> on replication 
                                                                     # controller <name>
+
+
+## Stopping Kubernetes
+
+kubectl delete pod <name>                                         # Delete pod <name>
+kubectl delete rc <name>                                          # Delete replication controller <name>
+kubectl delete svc <name>                                         # Delete service <name>
+kubectl drain <n> --delete-local-data --force --ignore-daemonsets # Stop all pods on <n>
+kubectl delete node <name>                                        # Remove <node> from the cluster
+
+kubectl delete pod <name>                                         # Delete pod <name>
+kubectl delete rc <name>                                          # Delete replication controller <name>
+kubectl delete svc <name>                                         # Delete service <name>
+kubectl drain <n> --delete-local-data --force --ignore-daemonsets # Stop all pods on <n>
+kubectl delete node <name>   # Remove <node> from the cluster
+
+## Debugging
+kubectl exec <service> <command> [-c <$container>] # execute <command> on <service>, optionally 
+                                                   # selecting container <$container>
+
+kubectl logs -f <name> [-c <$container>]           # Get logs from service <name>, optionally
+                                                   # selecting container <$container>
+
+watch -n 2 cat /var/log/kublet.log                 # Watch the Kublet logs
+kubectl top node                                   # Show metrics for nodes
+kubectl top pod                                    # Show metrics for pods
+
+
+Administration
+kubeadm init                                              # Initialize your master node
+kubeadm join --token <token> <master-ip>:<master-port>    # Join a node to your Kubernetes cluster
+kubectl create namespace <namespace>                      # Create namespace <name>
+kubectl taint nodes --all node-role.kubernetes.io/master- # Allow Kubernetes master nodes to run pods
+kubeadm reset                                             # Reset current state
+
+kubectl get secrets                                       # List all secrets
+kubeadm init                                              # Initialize your master node
+kubeadm join --token <token> <master-ip>:<master-port>    # Join a node to your Kubernetes cluster
+kubectl create namespace <namespace>                      # Create namespace <name>
+kubectl taint nodes --all node-role.kubernetes.io/master- # Allow Kubernetes master nodes to run pods
+kubeadm reset                                             # Reset current state
+ 
+kubectl get secrets                                       # List all secrets
+
+
+kubectl exec <service> <command> [-c <$container>] # execute <command> on <service>, optionally 
+                                                   # selecting container <$container>
+ 
+kubectl logs -f <name> [-c <$container>]           # Get logs from service <name>, optionally
+                                                   # selecting container <$container>
+ 
+watch -n 2 cat /var/log/kublet.log                 # Watch the Kublet logs
+kubectl top node                                   # Show metrics for nodes
+kubectl top pod                                    # Show metrics for pods
