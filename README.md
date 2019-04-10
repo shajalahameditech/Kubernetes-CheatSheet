@@ -58,3 +58,21 @@ List the services
 Describe service <name>
     
         kubectl describe svc <name>              
+
+## Interacting with Pods
+
+Launch a pod called <name>
+using image <image-name>
+    
+        kubectl run <name> --image=<image-name>                              
+                                                                    
+ 
+kubectl create -f <manifest.yaml>                                   # Create a service described 
+                                                                    # in <manifest.yaml>
+ 
+kubectl scale --replicas=<count> rc <name>                          # Scale replication controller 
+                                                                    # <name> to <count> instances
+ 
+kubectl expose rc <name> --port=<external> --target-port=<internal> # Map port <external> to 
+                                                                    # port <internal> on replication 
+                                                                    # controller <name>
